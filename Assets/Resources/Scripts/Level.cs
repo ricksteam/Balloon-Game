@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assets.Resources.Scripts
@@ -14,6 +15,7 @@ namespace Assets.Resources.Scripts
         public GameObject[] InteractableSpawnPoints;        //start positions of objects the player can pick up
         public GameObject[] TargetSpawnPoints;              //start positions  of objects the player aims for (hoops)
         public Text Hud;                                    //heads-up display text (the score)
+        public Text level;
         public int Goal;                                    //the score goal
         public LevelManager Levelmanager;                   //reference to our scene's levelmanager
         public GameObject Confetti;                         //confetti animation
@@ -25,11 +27,14 @@ namespace Assets.Resources.Scripts
         private readonly List<GameObject> _interactables = new List<GameObject>();    //list of current interactables (planes/boats/balloons)
         private float _timer;
 
+       
+
         public void Start()
         {
             //set default score, set timer, set player positions, hide other levels' enclosures
             _score = 0;
             _timer = 0.0f;
+            level.text =  "LEVEL: " + Data.level;
             _nextposition = Levelmanager.GetNextLevel(LevelNum);
             SetLevelEnclosure();
         }
@@ -55,24 +60,9 @@ namespace Assets.Resources.Scripts
             _timer += Time.deltaTime;
             string scoreString = "score: ";
             string slash = "/";
-            // to be replaced
-            /*
-            if (EndScreen)
-            {
-                string hudtext = "\n\n\n\n\t\tPoints:           Time:\n";
-                int [] goals = Levelmanager.GetGoals();
-                float [] times = Levelmanager.GetTimes();
-                for (int goal = 1; goal < goals.Length - 1; goal++)
-                {
-                    hudtext += "\t\t" + goals[goal] + "\t\t\t\t\t" + times[goal].ToString("0.00") + " sec\n";
-                }
-                Hud.text = hudtext;
-            }
-            else
-            */
-            {
-                Hud.text = scoreString + _score + slash + Goal;  //score format: "score: xxxx/goal"
-            }
+          
+            Hud.text = scoreString + _score + slash + Goal;  //score format: "score: xxxx/goal"
+            
         }
 
         IEnumerator TransitionToNextLevel(int nextLevel)
@@ -81,13 +71,25 @@ namespace Assets.Resources.Scripts
             Cam.GetComponent<OVRScreenFade>().StartFade();
             
             //move player to new position
-            Levelmanager.SetPlayerPosition(nextLevel);
+            //Levelmanager.SetPlayerPosition(nextLevel);
             Cam.GetComponent<OVRScreenFade>().OnLevelFinishedLoading(LevelNum-1);
             LevelNum++;
             Destroy(Confetti);
             Confetti = (GameObject) UnityEngine.Resources.Load("Prefabs&Objects/Confetti");
             _interactables.Clear();
-            Levelmanager.NextLevel();
+            foreach (GameObject interactable in InteractableSpawnPoints)
+            {
+                interactable.SetActive(false);
+            }
+
+           Data.incrementFloatStrength();
+            Data.level += 1;
+           if (Data.level > Data.maxLevel)
+            {
+                Data.resetValues();
+            }
+            SceneManager.LoadScene("BalloonGame");
+            //Levelmanager.NextLevel();
         }
 
         void SetLevelEnclosure()
@@ -121,7 +123,9 @@ namespace Assets.Resources.Scripts
                     Destroy(interact);
                 }
                 // here we would UI prompt to continue to next level
-                StartCoroutine(TransitionToNextLevel(LevelNum + 1));            
+                StartCoroutine(TransitionToNextLevel(LevelNum + 1));  
+   
+                       
             }
         }
 
