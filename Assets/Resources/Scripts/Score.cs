@@ -37,6 +37,8 @@ public class Score : MonoBehaviour {
             PlayerPrefs.SetInt("CompletedThree", 0);
             PlayerPrefs.SetInt("CompletedFour", 0);
             GameObject.Find("Achievements").GetComponent<Achievements>().updateText();
+            GameObject.Find("Achievements").GetComponent<Achievements>().loadResults();
+            GameObject.Find("Achievements").GetComponent<Achievements>().checkCompleted();
             Load();
         }
     }
