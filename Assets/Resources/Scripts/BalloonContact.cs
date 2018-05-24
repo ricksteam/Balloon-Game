@@ -15,10 +15,11 @@ namespace Assets.Resources.Scripts
         private RaycastHit[] _hits;
         private GameObject _thisBalloon;
         private bool canPop;
-
+        Achievements a;
         // determine which hand this is, and enable the sphere on the hand
         public void Start()
         {
+            a = GameObject.Find("Achievements").GetComponent<Achievements>();
             if (gameObject.name == "hand_left")
             {
                 _balloonlayer = 11;
@@ -66,6 +67,14 @@ namespace Assets.Resources.Scripts
                     OtherMeshrenderer.enabled = false;
                 }
 
+                if(_balloonlayer == 11)
+                {
+                    a.yellow++;
+                }
+                if (_balloonlayer == 12)
+                {
+                    a.blue++;
+                }
                 //Remove audio prefab
                 Destroy(_thisBalloon);
                 _thisBalloon = null;
