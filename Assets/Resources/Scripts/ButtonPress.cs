@@ -7,7 +7,7 @@ namespace Assets.Resources.Scripts
         public Spawn[] SpawnPoints;
         public Material PressedMat;
         private bool pressed = false;
-
+        public GameObject UIgroup;
        
 
         public void Start()
@@ -40,7 +40,9 @@ namespace Assets.Resources.Scripts
                 point.Prefab.GetComponent<BalloonScript>().LifeSpan = Data.getLifeSpan(); 
                 point.SpawnPrefab();
             }
-            this.gameObject.SetActive(false);
+
+            UIgroup.gameObject.SetActive(false);
+            
         }
     }
 }

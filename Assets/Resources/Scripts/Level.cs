@@ -27,11 +27,16 @@ namespace Assets.Resources.Scripts
         private readonly List<GameObject> _interactables = new List<GameObject>();    //list of current interactables (planes/boats/balloons)
         private float _timer;
 
+        Score score;
+        Achievements a;
        
 
         public void Start()
         {
             //set default score, set timer, set player positions, hide other levels' enclosures
+            score = GameObject.Find("Score").GetComponent<Score>();
+            a = GameObject.Find("Achievements").GetComponent<Achievements>();
+
             _score = 0;
             _timer = 0.0f;
             level.text =  "LEVEL: " + Data.level;
@@ -74,6 +79,8 @@ namespace Assets.Resources.Scripts
             //Levelmanager.SetPlayerPosition(nextLevel);
             Cam.GetComponent<OVRScreenFade>().OnLevelFinishedLoading(LevelNum-1);
             LevelNum++;
+            
+
             Destroy(Confetti);
             Confetti = (GameObject) UnityEngine.Resources.Load("Prefabs&Objects/Confetti");
             _interactables.Clear();
@@ -84,10 +91,15 @@ namespace Assets.Resources.Scripts
 
            Data.incrementFloatStrength();
             Data.level += 1;
-           if (Data.level > Data.maxLevel)
+           
+            if (Data.level > Data.maxLevel)
             {
                 Data.resetValues();
             }
+            score.level = Data.level;
+            score.Save();
+            a.checkAllAchievements(Data.level);
+            a.updateText();
             SceneManager.LoadScene("BalloonGame");
             //Levelmanager.NextLevel();
         }

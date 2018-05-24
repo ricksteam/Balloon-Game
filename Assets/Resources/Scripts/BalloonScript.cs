@@ -12,8 +12,11 @@ namespace Assets.Resources.Scripts
         public MeshRenderer Ball;
         public MeshRenderer BalloonString;
 
+        Achievements a;
+
         // Use this for initialization
         void Start() {
+            a = GameObject.Find("Achievements").GetComponent<Achievements>();
             _thisBalloon = this.gameObject;
             LifeSpan = Data.getLifeSpan();
             //Begin self-destroy timer for "this" balloon object
@@ -30,12 +33,14 @@ namespace Assets.Resources.Scripts
         private IEnumerator SelfDestroyTimer() {
             yield return new WaitForSeconds(LifeSpan);
             //Remove balloon from list of balloons
+            a.missed++;
             GameObject.Find("BalloonLevel").GetComponent<Level>().DecrementInteractables(this.gameObject);
             Destroy(this.gameObject);
         }
 
         public void OnTriggerEnter(Collider collider)
         {
+            a.missed++;
             GameObject.Find("BalloonLevel").GetComponent<Level>().DecrementInteractables(this.gameObject);
             Destroy(this.gameObject);
         }
