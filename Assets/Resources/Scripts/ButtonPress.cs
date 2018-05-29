@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Assets.Resources.Scripts
 {
@@ -8,12 +10,12 @@ namespace Assets.Resources.Scripts
         public Material PressedMat;
         private bool pressed = false;
         public GameObject UIgroup;
-       
+ 
 
+        Score score;
         public void Start()
         {
-            Debug.Log(Data.getFloatStrength());
-
+            
 
         }
         void OnTriggerEnter(Collider collider)
@@ -31,17 +33,18 @@ namespace Assets.Resources.Scripts
         //activate spawnpoint and disable pressed button
         private void Pressed()
         {
-            
             foreach (var point in SpawnPoints)
             {
                 point.gameObject.SetActive(true);
                 point.Prefab.GetComponent<BalloonScript>().BalloonString.enabled = true;
                 point.Prefab.GetComponent<BalloonScript>().Ball.enabled = true;
-                point.Prefab.GetComponent<BalloonScript>().LifeSpan = Data.getLifeSpan(); 
+                point.Prefab.GetComponent<BalloonScript>().LifeSpan = Data.getLifeSpan();
                 point.SpawnPrefab();
             }
 
             UIgroup.gameObject.SetActive(false);
+           
+           
             
         }
     }

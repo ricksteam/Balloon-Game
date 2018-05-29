@@ -92,10 +92,10 @@ namespace Assets.Resources.Scripts
            Data.incrementFloatStrength();
             Data.level += 1;
            
-            if (Data.level > Data.maxLevel)
+           /* if (Data.level > Data.maxLevel)
             {
                 Data.resetValues();
-            }
+            }*/
             score.level = Data.level;
             score.Save();
             a.checkAllAchievements(Data.level);

@@ -6,22 +6,22 @@ public static class Data
 { 
 
     public static float floatStrength = 0.20f;
-    public static int maxScore;
+    //public static int maxScore;
     public static int lifeSpan = 15;
     public static int level = 1;
     public static float maxLevel = 4; //Inclusive
 
-    public static float floatMultiplier = 0.1f;
+    public static float floatMultiplier = 0.07f;
 
     //Setter
     public static void setFloatStrength(float str)
     {
         floatStrength = str;
     }
-    public static void setMaxScore(int scr)
+   /* public static void setMaxScore(int scr)
     {
         maxScore = scr;
-    }
+    }*/
     public static void setLifeSpan(int life)
     {
         lifeSpan = life;
@@ -32,10 +32,10 @@ public static class Data
     {
         return floatStrength;
     }
-    public static int getMaxScore()
+    /* static int getMaxScore()
     {
         return maxScore;
-    }
+    }*/
     public static int getLifeSpan()
     {
         return lifeSpan;
