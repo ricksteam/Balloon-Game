@@ -12,7 +12,7 @@ public class Achievements : MonoBehaviour
     {
         "Get to level 3",
         "Don't miss any balloons before level 3",
-        "Only hit yellow balloons",
+        "Only hit yellow balloons", 
         "Only hit blue balloons"
     };
 
@@ -82,14 +82,14 @@ public class Achievements : MonoBehaviour
         switch (index)
         {
             case 0:
-                if (level >= 3)
+                if (level >= 6)
                 {
                     completed[0] = 1;
                     Debug.Log("Comp 1");
                 }
                 break;
             case 1:
-                if (level >=3 && missed == 0)
+                if (level >=6 && missed == 0)
                 {
                     completed[1] = 1;
 
