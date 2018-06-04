@@ -10,12 +10,12 @@ namespace Assets.Resources.Scripts
         public Material PressedMat;
         private bool pressed = false;
         public GameObject UIgroup;
- 
+        public int btn; //0 start, 1 exit, 2 restart
 
         Score score;
         public void Start()
         {
-            
+
 
         }
         void OnTriggerEnter(Collider collider)
@@ -26,12 +26,25 @@ namespace Assets.Resources.Scripts
                 pressed = true;
                 gameObject.GetComponent<MeshRenderer>().material = PressedMat;
                 //wait a second before disabling the button
-                Invoke("Pressed", 1);
+                switch (btn)
+                {
+                    case 0:
+                        Invoke("Begin", 1);
+                        break;
+                    case 1:
+                        Invoke("Exit", 1);
+                        break;
+
+                    case 2:
+                        Invoke("Restart", 1);
+                        break;
+                }
+
             }
         }
 
         //activate spawnpoint and disable pressed button
-        private void Pressed()
+        private void Begin()
         {
             foreach (var point in SpawnPoints)
             {
@@ -43,9 +56,18 @@ namespace Assets.Resources.Scripts
             }
 
             UIgroup.gameObject.SetActive(false);
-           
-           
-            
+
+        }
+
+        private void Exit()
+        {
+            Application.Quit();
+        }
+
+        private void Restart()
+        {
+            Data.resetValues();
+            SceneManager.LoadScene("BalloonGame");
         }
     }
 }
