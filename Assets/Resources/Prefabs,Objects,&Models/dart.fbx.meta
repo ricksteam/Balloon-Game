@@ -1,15 +1,33 @@
 fileFormatVersion: 2
-guid: d5533e4a585d2e74aacdf120a9ebe009
+guid: 35059a0f48b93be4fa62f53e096eb522
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    2186277476908879412: ImportLogs
+    100000: //RootNode
+    100002: pCylinder1
+    100004: pCylinder3
+    100006: pCylinder4
+    400000: //RootNode
+    400002: pCylinder1
+    400004: pCylinder3
+    400006: pCylinder4
+    2100000: phong1
+    2100002: phong2
+    2300000: pCylinder1
+    2300002: pCylinder3
+    2300004: pCylinder4
+    3300000: pCylinder1
+    3300002: pCylinder3
+    3300004: pCylinder4
+    4300000: pCylinder1
+    4300002: pCylinder3
+    4300004: pCylinder4
   externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -49,7 +67,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    indexFormat: 1
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -79,7 +97,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
