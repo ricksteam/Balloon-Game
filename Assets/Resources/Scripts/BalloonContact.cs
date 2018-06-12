@@ -11,6 +11,8 @@ namespace Assets.Resources.Scripts
         public Level Balloonlevel;
         public GameObject Spawnpoint;
 
+		public GameObject needle;
+
         private int _balloonlayer;
         private RaycastHit[] _hits;
         private GameObject _thisBalloon;
@@ -19,6 +21,7 @@ namespace Assets.Resources.Scripts
         // determine which hand this is, and enable the sphere on the hand
         public void Start()
         {
+			needle.SetActive (false);
             a = GameObject.Find("Achievements").GetComponent<Achievements>();
             if (gameObject.name == "hand_left")
             {
@@ -37,6 +40,7 @@ namespace Assets.Resources.Scripts
             if (collider.gameObject.tag == "Player")
             {
                 canPop = true;
+				needle.SetActive (true);
             }
         }
         private void OnCollisionEnter(Collision collision) {
@@ -79,6 +83,7 @@ namespace Assets.Resources.Scripts
                 Destroy(_thisBalloon);
                 _thisBalloon = null;
                 canPop = false;
+				needle.SetActive (false);
             }
         }
     }
