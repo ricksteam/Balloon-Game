@@ -55,7 +55,15 @@ namespace Assets.Resources.Scripts
 
                 //Play audio clip of sound effect
                 GetComponentInParent<AudioSource>().Play();
-
+                foreach (Transform child in _thisBalloon.transform)
+                {
+                    Debug.Log(child.name);
+                    if (child.name.Equals("CFX_Hit_C White"))
+                    {
+                       
+                        child.GetComponent<ParticleSystem>().Play();
+                    }
+                }
                 //Remove balloon from list of balloons in the balloonSpawn Script
                 Balloonlevel.DecrementInteractables(collision.gameObject);
 
@@ -80,11 +88,14 @@ namespace Assets.Resources.Scripts
                     a.blue++;
                 }
                 //Remove audio prefab
+                 
                 Destroy(_thisBalloon);
                 _thisBalloon = null;
                 canPop = false;
 				needle.SetActive (false);
             }
         }
+         
+           
     }
 }
