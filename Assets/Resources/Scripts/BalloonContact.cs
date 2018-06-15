@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace Assets.Resources.Scripts
 {
@@ -43,7 +44,14 @@ namespace Assets.Resources.Scripts
 				needle.SetActive (true);
             }
         }
-        private void OnCollisionEnter(Collision collision) {
+        
+        private IEnumerator waitToDelete()
+        {
+            
+            yield return new WaitForSeconds(0.1f);
+            
+        }
+        private IEnumerator OnCollisionEnter(Collision collision) {
             if (collision.gameObject.layer == _balloonlayer && canPop)
             {
                 _thisBalloon = collision.gameObject;
@@ -87,8 +95,8 @@ namespace Assets.Resources.Scripts
                 {
                     a.blue++;
                 }
-                //Remove audio prefab
-                 
+
+                yield return StartCoroutine(waitToDelete());
                 Destroy(_thisBalloon);
                 _thisBalloon = null;
                 canPop = false;
