@@ -21,7 +21,7 @@ namespace Assets.Resources.Scripts
         public GameObject Confetti;                         //confetti animation
         public Camera Cam;                                  //player main camera
         public bool EndScreen;
-
+        public Text speed;
         private int _score;                                 //current score
         private GameObject _nextposition;                   //array of player positions
         private readonly List<GameObject> _interactables = new List<GameObject>();    //list of current interactables (planes/boats/balloons)
@@ -39,6 +39,7 @@ namespace Assets.Resources.Scripts
 
             _score = 0;
             _timer = 0.0f;
+            speed.text = "Speed: " + (Data.floatStrength * 100).ToString("0.0") + "%";
             level.text =  "LEVEL: " + Data.level;
             _nextposition = Levelmanager.GetNextLevel(LevelNum);
             SetLevelEnclosure();
@@ -122,6 +123,7 @@ namespace Assets.Resources.Scripts
         public void IncrementScore()
         {
             _score += 100;
+            Data.balloonsHit++;
             if (_score == Goal)
             {
                 Confetti = Instantiate(Confetti, Cam.transform);

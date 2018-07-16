@@ -9,9 +9,8 @@ public static class Data
     //public static int maxScore;
     public static int lifeSpan = 15;
     public static int level = 1;
-    public static float maxLevel = 4; //Inclusive
-
-    public static float floatMultiplier = 0.07f;
+    public static int balloonsHit = 0;
+    public static int balloonsMissed = 0;
 
     //Setter
     public static void setFloatStrength(float str)
@@ -44,17 +43,33 @@ public static class Data
     //Increment
     public static void incrementFloatStrength()
     {
-        floatStrength += floatMultiplier;
+        int totalBalloons = balloonsMissed + balloonsHit;
+        Debug.Log("Total Balloons: " + totalBalloons);
+        Debug.Log("Balloons Missed: " + balloonsMissed);
+        if (balloonsMissed == 0) balloonsMissed = -1;
+        
+        float percentMissed = ((float)(totalBalloons - balloonsMissed) / totalBalloons);
+        
+        float newStrength = floatStrength * percentMissed;
+        if (newStrength == 0) newStrength = floatStrength - (floatStrength / 2);
+        if (newStrength <= 0.01f) newStrength = 0.02f;
+        if (newStrength > 1) newStrength = 1;
+        Debug.Log("Difficulty: " + newStrength * 100 + "%");
+        floatStrength = newStrength;
+        balloonsMissed = 0;
+        balloonsHit = 0;
     }
 
     public static void resetValues()
     {
 
-        
-        float strength = floatStrength - (maxLevel * floatMultiplier);
+
+        float strength = 0.2f;
         Debug.Log(strength);
         setFloatStrength(strength);
         lifeSpan = 15;
         level = 1;
+        balloonsHit = 0;
+        balloonsMissed = 0;
     }
 }

@@ -34,6 +34,7 @@ namespace Assets.Resources.Scripts
             yield return new WaitForSeconds(LifeSpan);
             //Remove balloon from list of balloons
             a.missed++;
+            Data.balloonsMissed++;
             GameObject.Find("BalloonLevel").GetComponent<Level>().DecrementInteractables(this.gameObject);
             Destroy(this.gameObject);
         }
@@ -41,6 +42,7 @@ namespace Assets.Resources.Scripts
         public void OnTriggerEnter(Collider collider)
         {
             a.missed++;
+            Data.balloonsMissed++;
             GameObject.Find("BalloonLevel").GetComponent<Level>().DecrementInteractables(this.gameObject);
             Destroy(this.gameObject);
         }

@@ -78,7 +78,7 @@ namespace Assets.Resources.Scripts
                 //spawn a new balloon
                 //Spawnpoint.GetComponent<Spawn>().SpawnPrefab();
                 //Debug.Log("check = " + check);
-
+                
                 Balloonlevel.IncrementScore();
                 //if goal reached, disable colored spheres around hands
                 if (Balloonlevel.Goal == Balloonlevel.GetScore())
