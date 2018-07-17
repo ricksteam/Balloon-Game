@@ -26,4 +26,5 @@ There are two ways to change the difficulty:
            (totalBallons - (balloonsMissed or -1)) / totalBalloons * currentSpeed = (10 - (-1)) / 10 = 1.1 * 0.2 = 0.22 or 22%
            If the player missed no balloons then balloonsMissed is set to -1 to ensure we are increasing the speed. Otherwise it is the              number of balloons missed
            
-           In other words the more balloons you miss the more 
+           In other words the more balloons you miss the more your difficulty is affected. This keeps the user where they should be.
+           This is also implemented in the plane game
