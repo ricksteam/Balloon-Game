@@ -6,6 +6,7 @@ namespace Assets.Resources.Scripts
 {
     public class ButtonPress : MonoBehaviour
     {
+        public Level balloonLevel;
         public Spawn[] SpawnPoints;
         public Material PressedMat;
         private bool pressed = false;
@@ -15,7 +16,7 @@ namespace Assets.Resources.Scripts
         Score score;
         public void Start()
         {
-
+            balloonLevel = GameObject.Find("BalloonLevel").GetComponent<Level>();
 
         }
         void OnTriggerEnter(Collider collider)
@@ -52,9 +53,10 @@ namespace Assets.Resources.Scripts
                 point.Prefab.GetComponent<BalloonScript>().BalloonString.enabled = true;
                 point.Prefab.GetComponent<BalloonScript>().Ball.enabled = true;
                 point.Prefab.GetComponent<BalloonScript>().LifeSpan = Data.getLifeSpan();
-                point.SpawnPrefab();
+                
             }
 
+            balloonLevel.SpawnInteractableObjects();
             UIgroup.gameObject.SetActive(false);
 
         }

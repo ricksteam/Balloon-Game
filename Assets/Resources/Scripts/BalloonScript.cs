@@ -19,12 +19,14 @@ namespace Assets.Resources.Scripts
             a = GameObject.Find("Achievements").GetComponent<Achievements>();
             _thisBalloon = this.gameObject;
             LifeSpan = Data.getLifeSpan();
+            _thisBalloon.transform.position += new Vector3(0f, 0f, Data.balloonShift);
             //Begin self-destroy timer for "this" balloon object
             //StartCoroutine(SelfDestroyTimer());
         }
 
         // Update is called once per frame
         void Update() {
+            
             FloatStrength = Data.getFloatStrength();
             _thisBalloon.transform.position = Vector3.Lerp(_thisBalloon.transform.position, _thisBalloon
                                                                                                 .transform.position + new Vector3(0f, 1f, 0f), Time.deltaTime * FloatStrength);

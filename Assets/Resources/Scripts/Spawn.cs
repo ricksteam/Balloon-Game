@@ -25,7 +25,7 @@ namespace Assets.Resources.Scripts
 
         public virtual GameObject SpawnPrefab()
         {
-            Randomvector = new Vector3(-R, Random.Range(2 *-R, -0.5f), Random.Range(R/1.5f, -R));
+            Randomvector = new Vector3(-R, Random.Range(2 *-R, -0.5f), Random.Range(-R + 1, R));
             CurrentInteractables++;
             return Instantiate(Prefab, transform.position + Randomvector + Offsetvector, Quaternion.identity);
         }

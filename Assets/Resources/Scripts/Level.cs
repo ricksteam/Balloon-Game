@@ -58,6 +58,7 @@ namespace Assets.Resources.Scripts
             {
                 _interactables.Add(interactable.GetComponent<Spawn>().SpawnPrefab());
             }
+            Debug.Log("Spawn: " + _interactables.Count); 
         }
 
         //update heads up display
@@ -115,6 +116,8 @@ namespace Assets.Resources.Scripts
         public void DecrementInteractables(GameObject interactable)
         {
             _interactables.Remove(interactable);
+            Debug.Log("COUNT: " + _interactables.Count);
+
             if (_interactables.Count == 0 && _score != Goal)
             {
                 SpawnInteractableObjects();

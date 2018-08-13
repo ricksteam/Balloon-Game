@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Data
+public class Data
 { 
 
     public static float floatStrength = 0.20f;
@@ -11,6 +11,7 @@ public static class Data
     public static int level = 1;
     public static int balloonsHit = 0;
     public static int balloonsMissed = 0;
+    public static float balloonShift = -0.5f;
 
     //Setter
     public static void setFloatStrength(float str)
